@@ -3,17 +3,19 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/bukharyi/20260412-hello-world-java.git'
+                git branch: 'main', url: 'https://github.com/bukharyi/hello-world-java-2.git'
             }
         }
         stage('Build') {
-            steps { bat 'gradlew clean build'}
+            steps { bat 'gradlew build'}
         }
         stage('Test') {
-            steps { bat 'gradlew test'}
+            steps { bat 'gradlew test'} 
         }
         stage('Deploy') {
-            steps { powershell 'java -jar build/libs/hello-world-java-V1.0.jar'}           
+            steps { 
+                powershell 'java -jar build/libs/hello-world-java-V1.jar'
+            }           
         }    
 }
 
@@ -31,5 +33,4 @@ post {
             // You could add notification steps here
         }
     }
-    
 }
